@@ -5,17 +5,7 @@ from telegram.ext import (
     MessageHandler,
     filters
 )
-
-from config import TOKEN
-from handlers.start import start
-from handlers.help import help_cmd
-from handlers.absurd import absurd_reply, bingung, fakta
-
-# Logging
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=logging.INFO
-)
+from handlers.ai_chat import chat_ai # Import handler baru
 
 def main():
     app = Application.builder().token(TOKEN).build()
@@ -24,13 +14,14 @@ def main():
     app.add_handler(CommandHandler("help", help_cmd))
     app.add_handler(CommandHandler("bingung", bingung))
     app.add_handler(CommandHandler("fakta", fakta))
-        
-    app.add_handler( 
-                     MessageHandler(filters.TEXT & ~filters.COMMAND, absurd_reply)
-                     )
-    print("🤖 Bot berjalan...")
-    app.run_polling(drop_pending_updates=True)
     
+    # Ganti absurd_reply dengan chat_ai
+    app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat_ai))
+
+    print("🤖 PenaBot Slank Version is Running...")
+    app.run_polling(drop_pending_updates=True)
+ 
         
 if __name__ == "__main__":
     main()
+
