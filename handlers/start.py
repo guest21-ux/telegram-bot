@@ -1,9 +1,10 @@
 from telegram import Update
 from telegram.ext import ContextTypes
 
-async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+async def start(update, context):
     user = update.effective_user
     await update.message.reply_text(
-        f"🤖 Halo {user.first_name}!\n"
-        "Bot kamu sudah rapi & jalan."
+        f"Yo {user.first_name}! 👋\n\n"
+        "Gue NgobrolBot, asisten paling gokil yang bakal nemenin hari-hari lo. "
+        "Mo tanya soal sains? Curhat? Atau sekedar gabut? Gas aja, chat gue!"
     )
