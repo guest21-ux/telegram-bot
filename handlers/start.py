@@ -8,3 +8,4 @@ async def start(update, context):
         "Gue NgobrolBot, asisten paling gokil yang bakal nemenin hari-hari lo. "
         "Mo tanya soal sains? Curhat? Atau sekedar gabut? Gas aja, chat gue!"
     )
+
