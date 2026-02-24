@@ -24,7 +24,7 @@ async def chat_ai(update, context):
         # Memanggil AI dengan model gemini-1.5-flash
         # Kita gabungkan instruksi sistem dan pesan user di dalam contents
         response = client.models.generate_content(
-            model="gemini-1.5-flash",
+            model="gemini-2.5-flash",
             contents=f"{sys_prompt}\n\nUser: {user_message}"
         )
         
@@ -37,4 +37,5 @@ async def chat_ai(update, context):
     except Exception as e:
         # Log error di terminal biar kita bisa tau kalau ada masalah
         print(f"Error AI: {e}")
+
         await update.message.reply_text("Duh, sinyal otak gue lagi ampas bray. Bentar yak, lagi gue benerin!")
