@@ -1,27 +1,35 @@
 import logging
-from telegram.ext import (
-    Application,
-    CommandHandler,
-    MessageHandler,
-    filters
-)
-from handlers.ai_chat import chat_ai # Import handler baru
+import os
+from dotenv import load_dotenv
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
+
+load_dotenv()
+TOKEN = os.getenv("TELEGRAM_TOKEN")
+
+# Import handler buatan kita
+from handlers.start import start
+from handlers.help import help_cmd
+from handlers.ai_chat import chat_ai
+
+
+
+logging.basicConfig(level=logging.INFO)
 
 def main():
+    # Ambil token dari environment variable
     app = Application.builder().token(TOKEN).build()
 
+    # Daftar perintah
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help_cmd))
-    app.add_handler(CommandHandler("bingung", bingung))
-    app.add_handler(CommandHandler("fakta", fakta))
     
-    # Ganti absurd_reply dengan chat_ai
+    # Semua chat teks bakal dijawab sama AI
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, chat_ai))
 
-    print("🤖 PenaBot Slank Version is Running...")
+    print("🚀 NgobrolBot Slank udah standby, bray!")
     app.run_polling(drop_pending_updates=True)
- 
-        
+
 if __name__ == "__main__":
     main()
+
 
