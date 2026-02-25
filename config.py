@@ -5,7 +5,9 @@ load_dotenv()  # Ini akan mencari file .env di laptop
 
 
 GEMINI_KEY = os.getenv("GEMINI_KEY")
-TOKEN = os.getenv("TELEGRAM_TOKEN")
+TELEGRAM_TOKEN = os.getenv("TELEGRAM_TOKEN")
 
-if not TOKEN:
+if not TELEGRAM_TOKEN:
     raise RuntimeError("TELEGRAM_TOKEN belum di-set")
+if not GEMINI_KEY:
+    raise RuntimeError("Gemini Key tidak terbaca")
