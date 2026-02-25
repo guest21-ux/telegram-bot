@@ -37,5 +37,5 @@ async def chat_ai(update, context):
     except Exception as e:
         # Log error di terminal biar kita bisa tau kalau ada masalah
         print(f"Error AI: {e}")
-
         await update.message.reply_text("Duh, sinyal otak gue lagi ampas bray. Bentar yak, lagi gue benerin!")
+
