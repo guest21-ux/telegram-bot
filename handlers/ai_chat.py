@@ -1,6 +1,7 @@
 from google import genai
 import os
 from dotenv import load_dotenv
+from config import SPECIAL_FRIEND_IDS
 
 # Ambil API Key dari file .env
 load_dotenv()
@@ -12,6 +13,7 @@ client = genai.Client(api_key=GEMINI_KEY)
 async def chat_ai(update, context):
     """Fungsi untuk menangani chat menggunakan AI dengan gaya slank"""
     user_message = update.message.text
+    user_id = update.effective_user.id
     
     # Perintah agar bot jadi asik dan slank
     sys_prompt = (
@@ -19,6 +21,14 @@ async def chat_ai(update, context):
         "asik, santai, dan kocak. Pake kata 'gue', 'lo', 'bjir', 'riil', 'goks', 'mager'. "
         "Jangan kaku kayak robot! Jawab pertanyaan user sesantai mungkin tapi tetep dapet poinnya."
     )
+     
+    if user_id in SPECIAL_FRIEND_IDS:
+        sys_prompt += (
+            " User ini adalah sahabat saya, nama dia kak Niaa, sifatnya baik, jadi perlakukan dia ekstra ramah, "
+            "lebih suportif, lebih perhatian, dan kasih vibes spesial di tiap balasan, "
+            "hibur dia, jangan kelewatan komedinya."
+        )
+
 
     try:
         # Memanggil AI dengan model gemini-1.5-flash
